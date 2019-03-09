@@ -3,6 +3,25 @@
 @section('content')
     
     <h3>All Categories</h3>
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Modify</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach($categories as $cat)
+            <tr>
+                <td>{{$cat->title}}</td>
+                <td>{{$cat->description}}</td>
+                <td>Edit / Delete</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
@@ -14,7 +33,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
                     <h4 class="modal-title" id="myModalLabel">New Category</h4>
                 </div>
             <form action="{{route('category.store')}}" method="post">
