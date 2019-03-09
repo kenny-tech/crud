@@ -17,7 +17,9 @@
             <tr>
                 <td>{{$cat->title}}</td>
                 <td>{{$cat->description}}</td>
-                <td>Edit / Delete</td>
+                <td>
+                    <button class="btn btn-info" data-toggle="modal" data-target="#edit">Edit</button>
+                     / Delete</td>
             </tr>
             @endforeach
         </tbody>
@@ -36,27 +38,38 @@
                     <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
                     <h4 class="modal-title" id="myModalLabel">New Category</h4>
                 </div>
-            <form action="{{route('category.store')}}" method="post">
-                {{csrf_field()}}
-                <div class="modal-body">
-                        <div class="form-group">
-                            <label for="title">Title</label>
-                            <input type="text" class="form-control" name="title" id="title">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="des">Description</label>
-                            <textarea name="description" id="description" cols="20" rows="5" class="form-control"></textarea>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
-                    </form>
-                </div>
+                <form action="{{route('category.store')}}" method="post">
+                    {{csrf_field()}}
+                    <div class="modal-body">
+                        @include('category.form')
+                    </div>            
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                        <h4 class="modal-title" id="myModalLabel">New Category</h4>
+                    </div>
+                <form action="{{route('category.store')}}" method="post">
+                    {{csrf_field()}}
+                    <div class="modal-body">
+                            @include('category.form')
+                    </div>
+                    <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+    </div>
 @endsection
