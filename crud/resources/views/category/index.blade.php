@@ -18,7 +18,7 @@
                 <td>{{$cat->title}}</td>
                 <td>{{$cat->description}}</td>
                 <td>
-                    <button class="btn btn-info" data-mytitle="{{$cat->title}}" data-mydescription="{{$cat->description}}" data-toggle="modal" data-target="#edit">Edit</button>
+                    <button class="btn btn-info" data-mytitle="{{$cat->title}}" data-mydescription="{{$cat->description}}" data-catid="{{$cat->id}}" data-toggle="modal" data-target="#edit">Edit</button>
                      / Delete</td>
             </tr>
             @endforeach
@@ -61,13 +61,15 @@
                         <h4 class="modal-title" id="myModalLabel">Edit Category</h4>
                     </div>
                 <form action="{{route('category.update','test')}}" method="post">
+                    {{method_field('patch')}}
                     {{csrf_field()}}
                     <div class="modal-body">
-                            @include('category.form')
+                        <input type="hidden" name="category_id" id="cat_id" value="">
+                        @include('category.form')
                     </div>
                     <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>
