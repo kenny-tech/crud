@@ -18,7 +18,7 @@
                 <td>{{$cat->title}}</td>
                 <td>{{$cat->description}}</td>
                 <td>
-                    <button class="btn btn-info" data-toggle="modal" data-target="#edit">Edit</button>
+                    <button class="btn btn-info" data-mytitle="{{$cat->title}}" data-mydescription="{{$cat->description}}" data-toggle="modal" data-target="#edit">Edit</button>
                      / Delete</td>
             </tr>
             @endforeach
@@ -58,9 +58,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-                        <h4 class="modal-title" id="myModalLabel">New Category</h4>
+                        <h4 class="modal-title" id="myModalLabel">Edit Category</h4>
                     </div>
-                <form action="{{route('category.store')}}" method="post">
+                <form action="{{route('category.update','test')}}" method="post">
                     {{csrf_field()}}
                     <div class="modal-body">
                             @include('category.form')

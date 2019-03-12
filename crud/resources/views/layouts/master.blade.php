@@ -95,5 +95,17 @@
 </div>
 
 <script src="{{asset('js/app.js')}}"></script>
+
+<script>
+  $('#edit').on('show.bs.modal', function(event){
+    var button = $(event.relatedTarget)
+    var title = button.data('mytitle')
+    var description = button.data('mydescription')
+    var modal = $(this)
+    modal.find('.modal-body #title').val(title);
+    modal.find('.modal-body #description').val(description);
+  })
+
+</script>
 </body>
 </html>
