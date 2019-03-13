@@ -19,7 +19,7 @@
                 <td>{{$cat->description}}</td>
                 <td>
                     <button class="btn btn-info" data-mytitle="{{$cat->title}}" data-mydescription="{{$cat->description}}" data-catid="{{$cat->id}}" data-toggle="modal" data-target="#edit">Edit</button>
-                     / Delete</td>
+                     / <button class="btn btn-danger" data-catid="{{$cat->id}}" data-toggle="modal" data-target="#delete">Delete</button></td>
             </tr>
             @endforeach
         </tbody>
@@ -30,7 +30,7 @@
         Add New
     </button>
 
-    <!-- Modal -->
+    <!-- Modal Add-->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -52,7 +52,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Edit-->
     <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -73,5 +73,32 @@
                     </div>
                 </form>
             </div>
+    </div>
+
+    <!-- Modal Delete-->
+    <div>
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                        <h4 class="modal-title" id="myModalLabel">Delete Confirmation</h4>
+                    </div>
+                <form action="{{route('category.destroy','test')}}" method="post">
+                    {{method_field('delete')}}
+                    {{csrf_field()}}
+                    <div class="modal-body">
+                        <p class="text-center">
+                            Are you sure you want to delete this?
+                        </p>
+                        <input type="hidden" name="category_id" id="cat_id" value="">
+                    </div>
+                    <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">No, Cancel</button>
+                            <button type="submit" class="btn btn-warning">Yes, Delete</button>
+                    </div>
+                </form>
+            </div>
+    </div>
     </div>
 @endsection
