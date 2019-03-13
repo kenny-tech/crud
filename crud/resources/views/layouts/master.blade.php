@@ -95,5 +95,28 @@
 </div>
 
 <script src="{{asset('js/app.js')}}"></script>
+
+<script>
+  $('#edit').on('show.bs.modal', function(event){
+    var button = $(event.relatedTarget)
+    var title = button.data('mytitle')
+    var description = button.data('mydescription')
+    var cat_id = button.data('catid')
+    var modal = $(this)
+    modal.find('.modal-body #title').val(title);
+    modal.find('.modal-body #description').val(description);
+    modal.find('.modal-body #cat_id').val(cat_id);
+  })
+</script>
+
+<script>
+  $('#delete').on('show.bs.modal', function(event){
+    var button = $(event.relatedTarget)
+    var cat_id = button.data('catid')
+    var modal = $(this)
+    modal.find('.modal-body #cat_id').val(cat_id);
+  })
+</script>
+
 </body>
 </html>
