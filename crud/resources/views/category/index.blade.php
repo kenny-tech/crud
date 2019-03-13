@@ -1,35 +1,43 @@
 @extends('layouts.master')
 
 @section('content')
+    <div class="">
+        <div class="box">
+            <div class="box-header">
+                <!-- Button trigger modal -->
+                <div align="right">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        Add New
+                    </button>
+                </div>
+                <h3 class="box-title">All Categories</h3>
+            </div>
+            <div class="box-body">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Modify</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach($categories as $cat)
+                        <tr>
+                            <td>{{$cat->title}}</td>
+                            <td>{{$cat->description}}</td>
+                            <td>
+                                <button class="btn btn-info" data-mytitle="{{$cat->title}}" data-mydescription="{{$cat->description}}" data-catid="{{$cat->id}}" data-toggle="modal" data-target="#edit">Edit</button>
+                                / <button class="btn btn-danger" data-catid="{{$cat->id}}" data-toggle="modal" data-target="#delete">Delete</button></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     
-    <h3>All Categories</h3>
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Modify</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach($categories as $cat)
-            <tr>
-                <td>{{$cat->title}}</td>
-                <td>{{$cat->description}}</td>
-                <td>
-                    <button class="btn btn-info" data-mytitle="{{$cat->title}}" data-mydescription="{{$cat->description}}" data-catid="{{$cat->id}}" data-toggle="modal" data-target="#edit">Edit</button>
-                     / <button class="btn btn-danger" data-catid="{{$cat->id}}" data-toggle="modal" data-target="#delete">Delete</button></td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-        Add New
-    </button>
-
     <!-- Modal Add-->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
